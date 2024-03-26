@@ -1,7 +1,3 @@
-# -*- coding: utf-8 -*-
-"""Value of Stieltjes Transform.ipynb
-
-
 import os
 import sys
 import time
@@ -23,10 +19,9 @@ import math
 from sklearn.datasets import make_spd_matrix
 from scipy.stats import ortho_group
 from numpy.random import RandomState
-
 import random
 
-"""n=400, p=2048; This surrogate case corresponds to n=25 and p=128"""
+## Esitmate using surrogate data
 
 from numpy.core.numeric import identity
 L = 1000
@@ -51,3 +46,26 @@ Stjprime = np.matrix.trace(np.linalg.inv(Sigmahat+lamb*np.identity(n_new))@np.li
 print(Stjprime)
 r_limit = (1/(lamb*Stj))*(sigma2+(lamb*n_new/p-sigma2)*(1-lamb*Stjprime/Stj))
 print(r_limit)
+
+
+## Fixed point algorithm
+import scipy.integrate as integrate
+import scipy.special as special
+from scipy.integrate import quad
+
+def lsdfun(x,vt):
+  return x/((1+vt*x)*np.pi*np.sqrt(100-(x-16)**2))
+def lsdfun2(x,vt):
+  return x**2/(((1+vt*x)**2)*np.pi*np.sqrt(100-(x-16)**2))
+def risk_fpa(z,gamma1,sgm):
+  v_previous = 0
+  v_new = 0
+  for i in range(20000):
+    v_previous = v_new
+    v_new = 1/(gamma1*quad(lsdfun,6,26,args=(v_new))[0]-z)
+  v_prime = 1/(1/(v_new)**2-gamma1*quad(lsdfun2,6,26,args=(v_new))[0])
+  risk_val = (1/(-z*v_new))*(sgm+(-z/gamma1-sgm)*(1+z*v_prime/v_new))
+  print(v_new)
+  print(v_prime)
+  print(risk_val)
+  return(risk_val)
