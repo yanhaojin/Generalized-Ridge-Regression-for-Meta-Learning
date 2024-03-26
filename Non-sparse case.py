@@ -125,49 +125,49 @@ for i in range(number_runs):
   ### solving optimization problem for each cases 
   ### MoM and MLE with initialization by identity
   problem1 = Problem(manifold=manifold,cost=CostOmega1)
-  solver1 = pymanopt.optimizers.SteepestDescent(max_time=180,max_iterations=8000)  
+  solver1 = pymanopt.optimizers.SteepestDescent(max_time=21600,max_iterations=8000)  
   Omega1 = solver1.run(problem1,initial_point=np.identity(p)).point
 
   problem2 = Problem(manifold=manifold,cost=MLEfun)
-  solver2 = pymanopt.optimizers.SteepestDescent(max_time=180,max_iterations=8000)  
+  solver2 = pymanopt.optimizers.SteepestDescent(max_time=21600,max_iterations=8000)  
   Omega2 = solver2.run(problem2,initial_point=np.identity(p)).point
   ### MLE with other different initializations
   problem3 = Problem(manifold=manifold,cost=MLEfun)
-  solver3 = pymanopt.optimizers.SteepestDescent(max_time=180,max_iterations=8000)  
+  solver3 = pymanopt.optimizers.SteepestDescent(max_time=21600,max_iterations=8000)  
   Omega3 = solver3.run(problem3,initial_point=spdm1).point
 
   problem4 = Problem(manifold=manifold,cost=MLEfun)
-  solver4 = pymanopt.optimizers.SteepestDescent(max_time=180,max_iterations=8000)  
+  solver4 = pymanopt.optimizers.SteepestDescent(max_time=21600,max_iterations=8000)  
   Omega4 = solver4.run(problem4,initial_point=spdm2).point
 
   problem5 = Problem(manifold=manifold,cost=MLEfun)
-  solver5 = pymanopt.optimizers.SteepestDescent(max_time=180,max_iterations=8000)  
+  solver5 = pymanopt.optimizers.SteepestDescent(max_time=21600,max_iterations=8000)  
   Omega5 = solver5.run(problem5,initial_point=spdm3).point
 
   problem6 = Problem(manifold=manifold,cost=MLEfun)
-  solver6 = pymanopt.optimizers.SteepestDescent(max_time=180,max_iterations=8000)  
+  solver6 = pymanopt.optimizers.SteepestDescent(max_time=21600,max_iterations=8000)  
   Omega6 = solver6.run(problem6,initial_point=spdm4).point
 
   ## optimize MoM with different initializations
   problem7 = Problem(manifold=manifold,cost=CostOmega1)
-  solver7 = pymanopt.optimizers.SteepestDescent(max_time=180,max_iterations=8000)  
+  solver7 = pymanopt.optimizers.SteepestDescent(max_time=21600,max_iterations=8000)  
   Omega7 = solver7.run(problem7,initial_point=spdm1).point
 
   problem8 = Problem(manifold=manifold,cost=CostOmega1)
-  solver8 = pymanopt.optimizers.SteepestDescent(max_time=180,max_iterations=8000)  
+  solver8 = pymanopt.optimizers.SteepestDescent(max_time=21600,max_iterations=8000)  
   Omega8 = solver8.run(problem8,initial_point=spdm2).point
 
   problem9 = Problem(manifold=manifold,cost=CostOmega1)
-  solver9 = pymanopt.optimizers.SteepestDescent(max_time=180,max_iterations=8000)  
+  solver9 = pymanopt.optimizers.SteepestDescent(max_time=21600,max_iterations=8000)  
   Omega9 = solver9.run(problem9,initial_point=spdm3).point
 
   problem10 = Problem(manifold=manifold,cost=CostOmega1)
-  solver10 = pymanopt.optimizers.SteepestDescent(max_time=180,max_iterations=8000)  
+  solver10 = pymanopt.optimizers.SteepestDescent(max_time=21600,max_iterations=8000)  
   Omega10 = solver10.run(problem10,initial_point=spdm4).point 
 
   ## solving optimization for MLE with initialization given by MoM
   problem11 = Problem(manifold=manifold,cost=MLEfun)
-  solver11 = pymanopt.optimizers.SteepestDescent(max_time=180,max_iterations=8000)  
+  solver11 = pymanopt.optimizers.SteepestDescent(max_time=21600,max_iterations=8000)  
   Omega11 = solver11.run(problem11,initial_point=Omega1).point 
 
   ## generate the training sample in the new task
